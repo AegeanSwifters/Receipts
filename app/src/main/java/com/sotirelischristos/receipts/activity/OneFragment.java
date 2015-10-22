@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.sotirelischristos.receipts.R;
 import com.sotirelischristos.receipts.app.MyApp;
 import com.sotirelischristos.receipts.helper.Place;
@@ -29,12 +31,14 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     private String TAG = MainActivity.class.getSimpleName();
 
-    private String URL = "http://sotirelischristos.com/swifters/data.json";
+    private final String fs_client_id = "GBEDG1W53A2XFD5UN1JQSU5QDSA1WIZ0JU04KFULEKACIVBA";
+    private final String fs_client_secret = "N4Z23VVUKGDLV2DAP0EGALD1ONPBIGOFN5ETSX3I1JLWMOKV";
+    private String URL = "https://api.foursquare.com/v2/venues/search?ll=40.7,-74&limit=1&v=20151022&client_id=" + fs_client_id + "&client_secret=" + fs_client_secret;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
     private SwipeListAdapter adapter;
-    private List<Place> movieList;
+    private List<Place> placeList;
 
     // initially offset will be 0, later will be updated while parsing the json
     private int offSet = 0;
@@ -53,48 +57,48 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
      */
     @Override
     public void onRefresh() {
-        if (!movieList.isEmpty()) {
-            movieList.clear();
+        if (!placeList.isEmpty()) {
+            placeList.clear();
         }
-        fetchMovies();
+        fetchPlaces();
     }
 
     /**
      * Fetching movies json by making http call
      */
-    private void fetchMovies() {
+    private void fetchPlaces() {
 
         // showing refresh animation before making http call
         swipeRefreshLayout.setRefreshing(true);
 
         // Volley's json array request object
-        JsonArrayRequest req = new JsonArrayRequest(URL,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET,
+                URL, null, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
+                    public void onResponse(JSONObject response) {
 
-                        if (response.length() > 0) {
+                        try {
+                            JSONObject fs_response = response.getJSONObject("response");
+                            JSONArray fs_venues = fs_response.getJSONArray("venues");
+                            if (fs_venues.length() > 0) {
 
-                            // looping through json and adding to movies list
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject movieObj = response.getJSONObject(i);
+                                // looping through json and adding to movies list
+                                for (int i = 0; i < fs_venues.length(); i++) {
+                                    try {
+                                        JSONObject place = fs_venues.getJSONObject(i);
+                                        placeList.add(0, new Place(0, place.getString("name")));
 
-                                    int rank = movieObj.getInt("rank");
-                                    String title = movieObj.getString("title");
-
-                                    Place m = new Place(rank, title);
-
-                                    movieList.add(0, m);
-
-                                } catch (JSONException e) {
-                                    Log.e(TAG, "JSON Parsing error: " + e.getMessage());
+                                    } catch (JSONException e) {
+                                        Log.e(TAG, "JSON Parsing error: " + e.getMessage());
+                                    }
                                 }
-                            }
 
-                            adapter.notifyDataSetChanged();
+                                adapter.notifyDataSetChanged();
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "JSON Parsing error: " + e.getMessage());
                         }
+
 
                         // stopping swipe refresh
                         swipeRefreshLayout.setRefreshing(false);
@@ -120,8 +124,8 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        movieList = new ArrayList<>();
-        adapter = new SwipeListAdapter(getActivity(), movieList);
+        placeList = new ArrayList<>();
+        adapter = new SwipeListAdapter(getActivity(), placeList);
         return inflater.inflate(R.layout.fragment_one, container, false);
     }
 
@@ -142,7 +146,7 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                     public void run() {
                                         swipeRefreshLayout.setRefreshing(true);
 
-                                        fetchMovies();
+                                        fetchPlaces();
                                     }
                                 }
         );
