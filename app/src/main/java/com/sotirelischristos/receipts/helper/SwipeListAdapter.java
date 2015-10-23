@@ -51,9 +51,11 @@ public class SwipeListAdapter extends BaseAdapter {
 
         TextView serial = (TextView) convertView.findViewById(R.id.serial);
         TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView distance = (TextView) convertView.findViewById(R.id.distance);
 
         serial.setText(String.valueOf(movieList.get(position).id));
         title.setText(movieList.get(position).title);
+        distance.setText(movieList.get(position).distance);
 
         String color = bgColors[position % bgColors.length];
         serial.setBackgroundColor(Color.parseColor(color));
