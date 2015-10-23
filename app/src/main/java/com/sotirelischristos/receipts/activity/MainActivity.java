@@ -22,11 +22,6 @@ public class MainActivity extends ActionBarActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private int[] tabIcons = {
-            R.drawable.ic_tab_main,
-            R.drawable.ic_tab_profile
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,20 +35,22 @@ public class MainActivity extends ActionBarActivity {
         setupTabIcons();
     }
 
+    /**
+     * Loads tab icons from resources
+     */
     private void setupTabIcons() {
         int[] tabIcons = {
                 R.drawable.ic_location_on_white_24dp,
                 R.drawable.ic_person_white_24dp,
         };
-
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new OneFragment(), "ONE");
-        adapter.addFrag(new SecondFragment(), "TWO");
+        adapter.addFrag(new OneFragment(), "Places");
+        adapter.addFrag(new SecondFragment(), "Profile");
         viewPager.setAdapter(adapter);
     }
 
@@ -82,8 +79,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-
-            // return null to display only the icon
+            // Return null to display only the icon
             return null;
         }
     }

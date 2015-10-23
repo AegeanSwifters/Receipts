@@ -1,8 +1,5 @@
 package com.sotirelischristos.receipts.helper;
 
-/**
- * Created by sotirelisc on 19-Oct-15.
- */
 public class Place {
     public int id;
     public String title;
