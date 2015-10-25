@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.parse.Parse;
+import com.parse.ParseCrashReporting;
 
 public class MyApp extends Application {
 
@@ -22,6 +24,10 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        // Parse init
+        ParseCrashReporting.enable(this);
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "FXbSp2Zxvbf48HmBB1IT2hCRDH9ndrJsgy8ZXEaA", "he6jHLjAHDvBT6dgvsAnHG87kyTD8ZIH8uRqkOVn");
     }
 
     public RequestQueue getRequestQueue() {
