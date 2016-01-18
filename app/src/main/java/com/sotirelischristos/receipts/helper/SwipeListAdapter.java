@@ -16,23 +16,23 @@ import com.sotirelischristos.receipts.R;
 public class SwipeListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Place> movieList;
+    private List<Place> venueList;
     private String[] bgColors;
 
-    public SwipeListAdapter(Activity activity, List<Place> movieList) {
+    public SwipeListAdapter(Activity activity, List<Place> venueList) {
         this.activity = activity;
-        this.movieList = movieList;
+        this.venueList = venueList;
         bgColors = activity.getApplicationContext().getResources().getStringArray(R.array.movie_serial_bg);
     }
 
     @Override
     public int getCount() {
-        return movieList.size();
+        return venueList.size();
     }
 
     @Override
     public Object getItem(int location) {
-        return movieList.get(location);
+        return venueList.get(location);
     }
 
     @Override
@@ -51,11 +51,11 @@ public class SwipeListAdapter extends BaseAdapter {
 
         TextView serial = (TextView) convertView.findViewById(R.id.serial);
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView distance = (TextView) convertView.findViewById(R.id.distance);
+        TextView category = (TextView) convertView.findViewById(R.id.distance);
 
-        serial.setText(String.valueOf(movieList.get(position).id));
-        title.setText(movieList.get(position).title);
-        distance.setText(movieList.get(position).distance);
+        serial.setText(String.valueOf(venueList.get(position).distance));
+        title.setText(venueList.get(position).title);
+        category.setText(venueList.get(position).category);
 
         String color = bgColors[position % bgColors.length];
         serial.setBackgroundColor(Color.parseColor(color));

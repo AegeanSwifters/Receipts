@@ -6,6 +6,8 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
+    <color name="colorRed">#F43530</color>
+    <color name="colorGreen">#09BB07</color>
     <string-array name="movie_serial_bg">
         <item>#125688</item>
         <item>#125688</item>

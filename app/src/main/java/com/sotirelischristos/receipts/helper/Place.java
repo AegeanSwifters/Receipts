@@ -1,17 +1,19 @@
 package com.sotirelischristos.receipts.helper;
 
 public class Place {
-    public int id;
+    public String id;
     public String title;
     public String distance;
+    public String category;
 
     public Place() {
     }
 
-    public Place(int id, String title, String distance) {
-        this.distance = distance;
-        this.title = title;
+    public Place(String id, String title, String distance, String category) {
         this.id = id;
+        this.title = title;
+        this.distance = distance;
+        this.category = category;
     }
 
 }

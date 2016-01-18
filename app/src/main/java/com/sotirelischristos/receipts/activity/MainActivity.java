@@ -1,3 +1,17 @@
+/**
+ * Crafted with
+ * <3
+ * by Christos Sotirelis
+ * and Theodore Palios
+ *
+ * Not for personal or commercial use!
+ * Not for educational or academic purposes, by any means!
+ *
+ * All rights and lefts reserved!
+ *
+ * Use with caution, cause NSA approves! ;)
+ */
+
 package com.sotirelischristos.receipts.activity;
 
 import android.os.Bundle;
@@ -9,7 +23,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.parse.ParseObject;
 import com.sotirelischristos.receipts.R;
 
 import java.util.ArrayList;
@@ -41,17 +54,18 @@ public class MainActivity extends ActionBarActivity {
      */
     private void setupTabIcons() {
         int[] tabIcons = {
-                R.drawable.ic_location_on_white_24dp,
-                R.drawable.ic_person_white_24dp,
+                R.drawable.ic_location_on_white_24dp
+                // R.drawable.ic_person_white_24dp
         };
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        // Adding an extra tab for user profile in the future
+        // tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new OneFragment(), "Places");
-        adapter.addFrag(new SecondFragment(), "Profile");
+        // adapter.addFrag(new SecondFragment(), "Profile");
         viewPager.setAdapter(adapter);
     }
 

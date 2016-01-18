@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_venue"
+    tools:context="com.sotirelischristos.receipts.activity.VenueActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Received receipt?"
+        android:id="@+id/receiptTextView"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/numberTextView"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YES"
+        android:id="@+id/yesButton"
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/receiptTextView"
+        android:layout_toStartOf="@+id/receiptTextView"
+        android:background="@color/colorGreen"
+        android:textColor="@color/textColorPrimary" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ΝΟ"
+        android:id="@+id/noButton"
+        android:layout_alignTop="@+id/yesButton"
+        android:layout_toEndOf="@+id/receiptTextView"
+        android:textColor="@color/textColorPrimary"
+        android:background="@color/colorRed" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/nameTextView"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Receipts not given: "
+        android:id="@+id/numberTextView"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/nameTextView"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
