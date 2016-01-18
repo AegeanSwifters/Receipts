@@ -159,6 +159,7 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                             swipeRefreshLayout.setRefreshing(false);
                         }
         });
+        adapter.notifyDataSetChanged();
         // Adding request to request queue
         MyApp.getInstance().addToRequestQueue(req);
     }

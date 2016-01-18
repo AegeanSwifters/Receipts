@@ -5,14 +5,12 @@
     android:layout_height="wrap_content"
     android:weightSum="1">
 
-    <TextView
-        android:id="@+id/serial"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="25dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/textColorPrimary"
+        android:id="@+id/venueImageView"
+        android:scaleType="fitXY"
+        android:visibility="visible"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
